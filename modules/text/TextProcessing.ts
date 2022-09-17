@@ -7,6 +7,10 @@ class TextProcessing {
         });
         return resultArray;
     }
+    static getStringFromByteArray(byteArray: number[]): string {
+        const buffer = Buffer.from(byteArray);
+        return buffer.toString();
+    }
 }
 
 export { TextProcessing }

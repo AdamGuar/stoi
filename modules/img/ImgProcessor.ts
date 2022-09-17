@@ -1,7 +1,7 @@
 const { createCanvas, loadImage } = require('canvas')
 const fs = require('fs');
 
-import pixelPositions from '../../configs/pixelPositions.json';
+import { PixelPosition } from '../runners';
 
 class ImgProcessor {
     private image: any;
@@ -27,9 +27,9 @@ class ImgProcessor {
         }
     }
 
-    addArrayToCanvas(input: number[]) {
+    addArrayToCanvas(input: number[], positions: PixelPosition[]) {
         const toPut = input.map((numberToPut, index) => {
-            const data = pixelPositions[index];
+            const data = positions[index];
             data.value = numberToPut;
             return data;
         });
@@ -39,10 +39,10 @@ class ImgProcessor {
         });
     }
 
-    readByteArrayFromCanvas(): number[] {
+    readByteArrayFromCanvas(positions: PixelPosition[]): number[] {
         const result: number[] = [];
-        for(let i=0; i < pixelPositions.length ; i++) {
-            const position = pixelPositions[i];
+        for(let i=0; i < positions.length ; i++) {
+            const position = positions[i];
             const pixel = this.ctx.getImageData(position.x, position.y, 1, 1);
             const rgb = pixel.data;
             if(rgb[0]==42) break;
@@ -62,8 +62,20 @@ class ImgProcessor {
         fs.writeFileSync('./imagesOutput/test.png', buffer);
     }
 
+    saveImage(path: string) {
+        const buffer = this.canvas.toBuffer(this.getBufferTypeFromPath(path));
+        fs.writeFileSync(path, buffer);
+    }
+
     getImg() {
         return this.image;
+    }
+
+    private getBufferTypeFromPath(path: string): string{
+        if(path.toLowerCase().indexOf('jpeg') !== -1 || path.toLowerCase().indexOf('jpg') !== -1) return 'image/jpeg';
+        if(path.toLowerCase().indexOf('svg') !== -1) return 'image/svg';
+        if(path.toLowerCase().indexOf('png') !== -1) return 'image/png';
+        return 'image/jpg';
     }
 }
 

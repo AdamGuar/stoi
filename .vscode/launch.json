@@ -5,12 +5,22 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "type": "node",
+        "command": "npm run start-hide",
+        "name": "Run hide",
         "request": "launch",
-        "name": "Launch Program",
-        "program": "${workspaceFolder}/index.ts",
-        "preLaunchTask": "tsc",
-        "outFiles": ["${workspaceFolder}/out/**/*.js"]
+        "type": "node-terminal"
+      },
+      {
+        "command": "npm run start-find",
+        "name": "Run find",
+        "request": "launch",
+        "type": "node-terminal"
+      },
+      {
+        "command": "npm run start-keygen",
+        "name": "Run keygen",
+        "request": "launch",
+        "type": "node-terminal"
       }
     ]
   }

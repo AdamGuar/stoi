@@ -1,18 +1,18 @@
 class PublicKey { 
-    public pixelPostions: PixelPostion[]
+    public pixelPostions: PixelPosition[]
     public encryptionKey: string
 
-    constructor(pixelPositions: PixelPostion[], encryptionKey: string) {
+    constructor(pixelPositions: PixelPosition[], encryptionKey: string) {
         this.pixelPostions = pixelPositions;
         this.encryptionKey = encryptionKey;
     }
 
 }
 
-class PixelPostion {
+class PixelPosition {
     public x;
     public y;
     public value;
 }
 
-export { PublicKey, PixelPostion }
+export { PublicKey, PixelPosition }

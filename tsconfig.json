@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
-        "outDir": "out",
+        "outDir": "bin",
         "sourceMap": true,
         "esModuleInterop": true,
         "resolveJsonModule": true

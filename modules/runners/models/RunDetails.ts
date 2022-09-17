@@ -1,10 +1,10 @@
 class RunDetails {
     public status: Status
-    public detais: string
+    public detalis: string
 
     constructor(status: Status, details: string) {
         this.status = status;
-        this.detais = details;
+        this.detalis = details;
     }
 }
 

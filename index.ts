@@ -1,36 +1,25 @@
-import { ImgProcessor } from './modules/img/ImgProcessor';
-import { TextProcessing } from './modules/text/TextProcessing';
-import { KeyGeneratorRunner } from './runners/KeyGenerationRunner';
-import { InputParameters } from './runners/models/InputParameters';
+import { FindRunner, HideRunner, InputParameters, InputParametersOptionsBuilder, KeyGeneratorRunner, ApplicationRunner } from './modules/runners'
+import commandLineArgs from 'command-line-args'
+
+import { CryptrEncryption } from './modules/encryption';
+import { RunDetails } from './modules/runners/models/RunDetails';
+const cryptrEncryption = new CryptrEncryption();
+
+const runnersModeMap = {
+    keygen: new KeyGeneratorRunner(cryptrEncryption),
+    hide: new HideRunner(cryptrEncryption),
+    find: new FindRunner(cryptrEncryption)
+}
 
 async function main() {
-    const imgProcessor = new ImgProcessor();
-    try {
-        await imgProcessor.loadImage('./resources/cat.jpg');
-        const cat = imgProcessor.getImg();
-        const bytesFromText = TextProcessing.toByteArray('to jest kot');
-        imgProcessor.addArrayToCanvas(bytesFromText);
-        imgProcessor.saveCanvas();
-    } catch (error) {
-        console.log(error);
-    }
+    const optionDefinitions = InputParametersOptionsBuilder.buildOptions();
+    const options: InputParameters = commandLineArgs(optionDefinitions);
+    console.log(options);
 
-    const imgProcessorReader = new ImgProcessor();
-    try {
-        await imgProcessorReader.loadImage('./imagesOutput/test.png');
-        const buffer = Buffer.from(imgProcessorReader.readByteArrayFromCanvas());
-        console.log(buffer.toString());
-    } catch (error) {
-        console.log(error);
-    }
+    const runner: ApplicationRunner = runnersModeMap[options.mode];
+    const details: RunDetails = await runner.run(options);
 
-    let inputParameters = new InputParameters();
-    inputParameters.boundary = '250x250';
-    inputParameters.publicKeyOut = './out/p_key.json';
-
-    const keyGeneratorRunner = new KeyGeneratorRunner();
-    keyGeneratorRunner.run(inputParameters);
-   
+    console.log(JSON.stringify(details));
 }
 
 main();

@@ -1,9 +1,9 @@
 import { RunDetails } from './models/RunDetails'
 import { InputParameters } from './models/InputParameters' 
 
-interface ApplicationMode {
+interface ApplicationRunner {
     shouldRun(inputParameters: InputParameters): boolean
-    run(inputParameters: InputParameters): RunDetails
+    run(inputParameters: InputParameters): Promise<RunDetails>
 }
 
-export  { ApplicationMode };
+export  { ApplicationRunner };
