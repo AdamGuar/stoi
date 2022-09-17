@@ -14,12 +14,14 @@ const runnersModeMap = {
 async function main() {
     const optionDefinitions = InputParametersOptionsBuilder.buildOptions();
     const options: InputParameters = commandLineArgs(optionDefinitions);
-    console.log(options);
 
     const runner: ApplicationRunner = runnersModeMap[options.mode];
-    const details: RunDetails = await runner.run(options);
+    const runStatus: RunDetails = await runner.run(options);
 
-    console.log(JSON.stringify(details));
+    console.log('Program execution completed');
+    console.log(`Status: ${runStatus.status}`);
+    console.log(`Details: ${runStatus.detalis}`);
+
 }
 
 main();

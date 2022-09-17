@@ -67,14 +67,15 @@ class HideRunner implements ApplicationRunner {
         try {
             const keyString = readFileSync(inputParameters.keyPath).toString();
             const decryptedKey: PublicKey = JSON.parse(this.encryption.decrypt(keyString, inputParameters.secret));
+            const stringToHide = this.encryption.encrypt(inputParameters.text, decryptedKey.encryptionKey);
 
-            const byteArrayToHide = TextProcessing.toByteArray(this.encryption.encrypt(inputParameters.text, decryptedKey.encryptionKey));
+            const byteArrayToHide = TextProcessing.toByteArray(stringToHide);
             const imgProcessor = new ImgProcessor();
 
             await imgProcessor.loadImage(inputParameters.imagePath);
             imgProcessor.addArrayToCanvas(byteArrayToHide, decryptedKey.pixelPostions);
 
-            const encryptedImagePath = inputParameters.imageOutPath || './encrypted.jpg'
+            const encryptedImagePath = inputParameters.imageOutPath || './encrypted.png'
 
             await imgProcessor.saveImage(encryptedImagePath);
             return new RunDetails(Status.Ok, `Text encrypted and save to ${encryptedImagePath}`);

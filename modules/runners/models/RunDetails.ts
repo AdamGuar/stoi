@@ -9,8 +9,8 @@ class RunDetails {
 }
 
 enum Status {
-    Ok,
-    Fail
+    Ok = "OK",
+    Fail = "FAIL"
 }
 
 export {RunDetails, Status}

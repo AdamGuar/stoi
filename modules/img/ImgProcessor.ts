@@ -33,7 +33,7 @@ class ImgProcessor {
             data.value = numberToPut;
             return data;
         });
-        toPut.forEach(element=> {
+        toPut.forEach((element, index)=> {
             this.ctx.fillStyle = `rgb(${element.value},0,0)`;
             this.ctx.fillRect(element.x, element.y, 1, 1);
         });
@@ -45,7 +45,6 @@ class ImgProcessor {
             const position = positions[i];
             const pixel = this.ctx.getImageData(position.x, position.y, 1, 1);
             const rgb = pixel.data;
-            if(rgb[0]==42) break;
             result.push(rgb[0]);
         }
         return result;
@@ -72,10 +71,12 @@ class ImgProcessor {
     }
 
     private getBufferTypeFromPath(path: string): string{
-        if(path.toLowerCase().indexOf('jpeg') !== -1 || path.toLowerCase().indexOf('jpg') !== -1) return 'image/jpeg';
+        /*
+        if(path.toLowerCase().indexOf('jpeg') !== -1 || path.toLowerCase().indexOf('jpg') !== -1) return 'image/png';
         if(path.toLowerCase().indexOf('svg') !== -1) return 'image/svg';
         if(path.toLowerCase().indexOf('png') !== -1) return 'image/png';
-        return 'image/jpg';
+        */
+        return 'image/png';
     }
 }
 
