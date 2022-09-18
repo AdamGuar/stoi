@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { FindRunner, HideRunner, InputParameters, InputParametersOptionsBuilder, KeyGeneratorRunner, ApplicationRunner, HelpRunner } from './modules/runners'
 import commandLineArgs from 'command-line-args'
 

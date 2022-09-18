@@ -2,7 +2,8 @@
   "name": "stoi",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bin/index.js",
+  "bin": "bin/index.js",
   "scripts": {
     "build": "tsc && cp -r ./utils/ ./bin/utils/",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
