@@ -37,10 +37,6 @@ class FindRunner implements ApplicationRunner {
         this.encryption = encryption;
     }
 
-    shouldRun(inputParameters: InputParameters): boolean {
-        return inputParameters.mode == Mode.find
-    };
-
     private validateParams(inputParameters: InputParameters): string[] {
         const invalidParams = [];
         Object.keys(REQUIRED_PARAMETERS).forEach(element => {

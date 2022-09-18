@@ -34,10 +34,6 @@ class KeyGeneratorRunner implements ApplicationRunner {
         this.encryption = encryption;
     }
 
-    shouldRun(inputParameters: InputParameters): boolean {
-        return inputParameters.mode == Mode.keygen
-    };
-
     private validateParams(inputParameters: InputParameters): string[] {
         const invalidParams = [];
         Object.keys(REQUIRED_PARAMETERS).forEach(element => {
