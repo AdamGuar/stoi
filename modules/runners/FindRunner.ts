@@ -7,6 +7,8 @@ import { TextProcessing } from '../text/TextProcessing';
 import { ImgProcessor } from '../img/ImgProcessor';
 import { PublicKey } from './models/PublicKey';
 
+import { writeFileSync } from 'fs';
+
 
 const REQUIRED_PARAMETERS = {
     keyPath: (param) => {
@@ -68,6 +70,10 @@ class FindRunner implements ApplicationRunner {
             const encryptedText = TextProcessing.getStringFromByteArray(bytesFromImg);
 
             const decryptedText = this.encryption.decrypt(encryptedText, decryptedKey.encryptionKey);
+
+            if(inputParameters.textOut) {
+                writeFileSync(inputParameters.textOut, decryptedText);
+            }
 
             return new RunDetails(Status.Ok, `Text decrypted from image: ${decryptedText}`);
 

@@ -1,6 +1,7 @@
 class InputParameters {
     public mode: Mode;
     public text: string;
+    public textOut: string;
     public imagePath: string;
     public imageOutPath: string;
     public keyPath: string;
@@ -20,6 +21,7 @@ class InputParametersOptionsBuilder {
         return [
             { name: 'mode', type: String},
             { name: 'text', type: String},
+            { name: 'textOut', type: String},
             { name: 'imagePath', type: String},
             { name: 'imageOutPath', type: String},
             { name: 'keyPath', type: String},

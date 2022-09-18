@@ -27,8 +27,9 @@ stoi --mode hide --text YOUR_TEXT_TO_ECRYPT --imagePath PATH_TO_IMAGE_THAT_WILL_
 3. Mode find - finds text within provided image using public key and secret 
 How to run it:
 
-stoi ---mode find --imagePath ENCRYPTED_IMAGE_PATH --keyPath YOUR_PUBLIC_KEY_PATH --secret SECRET_THAT_WAS_USED_TO_CREATE_KEY
+stoi ---mode find --imagePath ENCRYPTED_IMAGE_PATH --keyPath YOUR_PUBLIC_KEY_PATH --secret SECRET_THAT_WAS_USED_TO_CREATE_KEY --textOut PATH_FOR_SAVING_ENCRYPTED_TEXT
 
     --imagePath - path to encrypted image
     --secret - secret string to that was used to encrypt the public key
     --keyPath - path of public key
+    --textOut - output path where encrypted text will be sent. If not set program will just print text in console.
