@@ -5,7 +5,7 @@
   "main": "bin/index.js",
   "bin": "bin/index.js",
   "scripts": {
-    "build": "tsc && cp -r ./utils/ ./bin/utils/",
+    "build": "tsc",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
     "start": "tsc && node ./bin/index.js --mode hide --text \"kot kot\" --imagePath \"./resources/cat.jpg\" --keyPath \"./keyOut/pkey.txt\" --secret \"totalysecretsecret\"",
     "start-hide": "tsc && node ./bin/index.js --mode hide --text \"kot kot\" --imagePath \"./resources/cat.jpg\" --imageOutPath \"./resources/encrypted.png\" --keyPath \"./keyOut/pkey.txt\" --secret \"totalysecretsecret\"",
