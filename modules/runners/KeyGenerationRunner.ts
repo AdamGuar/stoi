@@ -61,10 +61,11 @@ class KeyGeneratorRunner implements ApplicationRunner {
             const positions = new Set<string>();
 
             while (positions.size < maxLength) {
-                const pixelPosition = {
+                const pixelPosition: PixelPosition = {
                     x: this.getRandomInt(boundary[0]),
                     y: this.getRandomInt(boundary[1]),
-                    value: 0
+                    value: 0,
+                    rgbIndex: this.getRandomInt(2)
                 }
                 positions.add(JSON.stringify(pixelPosition));
             }

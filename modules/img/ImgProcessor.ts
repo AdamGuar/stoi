@@ -34,9 +34,17 @@ class ImgProcessor {
             return data;
         });
         toPut.forEach((element, index)=> {
-            this.ctx.fillStyle = `rgb(${element.value},0,0)`;
+            const pixel = this.ctx.getImageData(element.x, element.y, 1, 1);
+            this.ctx.fillStyle = this.getRgbForPosition(element.value, element.rgbIndex, pixel);
             this.ctx.fillRect(element.x, element.y, 1, 1);
         });
+    }
+
+    private getRgbForPosition(value: number, position: number, currentPixel: any): string {
+        const rgb = currentPixel.data;
+        if(position===0) return `rgb(${value},${rgb[1]},${rgb[2]})`;
+        if(position===1) return `rgb(${rgb[0]},${value},${rgb[2]})`;
+        if(position===2) return `rgb(${rgb[0]},${rgb[1]},${value})`;
     }
 
     readByteArrayFromCanvas(positions: PixelPosition[]): number[] {
@@ -45,20 +53,9 @@ class ImgProcessor {
             const position = positions[i];
             const pixel = this.ctx.getImageData(position.x, position.y, 1, 1);
             const rgb = pixel.data;
-            result.push(rgb[0]);
+            result.push(rgb[position.rgbIndex]);
         }
         return result;
-    }
-
-    async addTextToImmage(text: string) {
-        this.ctx.fillStyle = '#fff'
-        this.ctx.font = '11pt'
-        this.ctx.fillText(text,this.width / 2 , this.height / 2);
-    }
-
-    saveCanvas() {
-        const buffer = this.canvas.toBuffer('image/png')
-        fs.writeFileSync('./imagesOutput/test.png', buffer);
     }
 
     saveImage(path: string) {

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
     "start": "tsc && node ./bin/index.js --mode hide --text \"kot kot\" --imagePath \"./resources/cat.jpg\" --keyPath \"./keyOut/pkey.txt\" --secret \"totalysecretsecret\"",
-    "start-hide": "tsc && node ./bin/index.js --mode hide --text \"kot kot\" --imagePath \"./resources/cat.jpgasdsad\" --imageOutPath \"./resources/encrypted.png\" --keyPath \"./keyOut/pkey.txt\" --secret \"totalysecretsecret\"",
+    "start-hide": "tsc && node ./bin/index.js --mode hide --text \"kot kot\" --imagePath \"./resources/cat.jpg\" --imageOutPath \"./resources/encrypted.png\" --keyPath \"./keyOut/pkey.txt\" --secret \"totalysecretsecret\"",
     "start-find": "tsc && node ./bin/index.js --mode find --imagePath \"./resources/encrypted.png\" --keyPath \"./keyOut/pkey.txt\" --secret \"totalysecretsecret\"",
     "start-keygen": "tsc && node ./bin/index.js --mode keygen --secret \"totalysecretsecret\" --boundary 250x250 --publicKeyOut \"./keyOut/pkey.txt\""
   },

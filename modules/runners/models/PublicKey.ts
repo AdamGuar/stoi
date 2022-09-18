@@ -12,7 +12,8 @@ class PublicKey {
 class PixelPosition {
     public x;
     public y;
-    public value;
+    public value = 0;
+    public rgbIndex = 0;
 }
 
 export { PublicKey, PixelPosition }
