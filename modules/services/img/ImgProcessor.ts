@@ -1,7 +1,7 @@
 const { createCanvas, loadImage } = require('canvas')
 const fs = require('fs');
 
-import { PixelPosition } from '../runners';
+import { PixelPosition } from '../../runners';
 
 class ImgProcessor {
     private image: any;

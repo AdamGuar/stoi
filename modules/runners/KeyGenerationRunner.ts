@@ -3,7 +3,7 @@ import { InputParameters, Mode } from './models/InputParameters'
 import randomstring from 'randomstring'
 import { PixelPosition, PublicKey } from './models/PublicKey';
 import { writeFileSync } from 'fs';
-import { Encryption } from '../encryption';
+import { Encryption } from '../services/encryption';
 import { ApplicationRunner } from './ApplicationRunner'
 
 const MAX_LENGTH = 280;

@@ -3,7 +3,7 @@
 import { FindRunner, HideRunner, InputParameters, InputParametersOptionsBuilder, KeyGeneratorRunner, ApplicationRunner, HelpRunner } from './modules/runners'
 import commandLineArgs from 'command-line-args'
 
-import { CryptrEncryption } from './modules/encryption';
+import { CryptrEncryption } from './modules/services/encryption';
 import { RunDetails } from './modules/runners/models/RunDetails';
 const cryptrEncryption = new CryptrEncryption();
 

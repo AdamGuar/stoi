@@ -1,10 +1,10 @@
 import { RunDetails, Status } from './models/RunDetails'
-import { InputParameters, Mode } from './models/InputParameters'
+import { InputParameters } from './models/InputParameters'
 import { readFileSync } from 'fs';
-import { Encryption } from '../encryption';
+import { Encryption } from '../services/encryption';
 import { ApplicationRunner } from './ApplicationRunner';
-import { TextProcessing } from '../text/TextProcessing';
-import { ImgProcessor } from '../img/ImgProcessor';
+import { TextProcessing } from '../services/text/TextProcessing';
+import { ImgProcessor } from '../services/img/ImgProcessor';
 import { PublicKey } from './models/PublicKey';
 
 import { writeFileSync } from 'fs';
