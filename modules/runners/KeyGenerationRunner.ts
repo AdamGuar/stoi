@@ -58,7 +58,7 @@ class KeyGeneratorRunner implements ApplicationRunner {
             const boundary = this.getBoundary(inputParameters.boundary);
             const maxLength = MAX_LENGTH;
 
-            const positions = new Set<string>();
+            const positions = new Map();
 
             while (positions.size < maxLength) {
                 const pixelPosition: PixelPosition = {
@@ -67,11 +67,11 @@ class KeyGeneratorRunner implements ApplicationRunner {
                     value: 0,
                     rgbIndex: this.getRandomInt(2)
                 }
-                positions.add(JSON.stringify(pixelPosition));
+                positions.set(`${pixelPosition.x}x${pixelPosition.y}`, pixelPosition);
             }
 
             const result = Array.from(positions).map(el => {
-                const parsed: PixelPosition = JSON.parse(el);
+                const parsed: PixelPosition = el[1];
                 return parsed;
             });
 
@@ -87,8 +87,6 @@ class KeyGeneratorRunner implements ApplicationRunner {
 
 
     };
-
-    
 
     private getBoundary(boundaryParam: string): number[] {
         const result = new Array<number>(2);
