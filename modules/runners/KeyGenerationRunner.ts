@@ -56,7 +56,7 @@ class KeyGeneratorRunner implements ApplicationRunner {
 
         try {
             const boundary = this.getBoundary(inputParameters.boundary);
-            const maxLength = MAX_LENGTH;
+            const maxLength = this.getMaxLengthForEncrypted(inputParameters.secret);
 
             const positions = new Map();
 
@@ -100,8 +100,16 @@ class KeyGeneratorRunner implements ApplicationRunner {
         return result;
     }
 
-    getRandomInt(max): number {
+    private getRandomInt(max): number {
         return Math.floor(Math.random() * max);
+    }
+
+    private getMaxLengthForEncrypted(secret): number {
+        const randomWihtLength = randomstring.generate({
+            length: MAX_LENGTH
+          });
+        const encryptedRandom = this.encryption.encrypt(randomWihtLength, secret);
+        return encryptedRandom.length;
     }
 }
 

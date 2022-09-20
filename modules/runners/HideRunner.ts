@@ -29,7 +29,7 @@ const REQUIRED_PARAMETERS = {
         return param;
     },
     text: (param) => {
-        return param;
+        return param && param.length <= 280;
     }
 }
 
