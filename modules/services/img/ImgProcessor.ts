@@ -63,16 +63,7 @@ class ImgProcessor {
         fs.writeFileSync(path, buffer);
     }
 
-    getImg() {
-        return this.image;
-    }
-
     private getBufferTypeFromPath(path: string): string{
-        /*
-        if(path.toLowerCase().indexOf('jpeg') !== -1 || path.toLowerCase().indexOf('jpg') !== -1) return 'image/png';
-        if(path.toLowerCase().indexOf('svg') !== -1) return 'image/svg';
-        if(path.toLowerCase().indexOf('png') !== -1) return 'image/png';
-        */
         return 'image/png';
     }
 }

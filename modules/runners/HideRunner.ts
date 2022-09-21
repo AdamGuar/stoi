@@ -1,5 +1,5 @@
 import { RunDetails, Status } from './models/RunDetails'
-import { InputParameters, Mode } from './models/InputParameters'
+import { InputParameters } from './models/InputParameters'
 import { readFileSync } from 'fs';
 import { Encryption } from '../services/encryption';
 import { ApplicationRunner } from './ApplicationRunner';

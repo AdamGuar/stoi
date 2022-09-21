@@ -75,7 +75,7 @@ class FindRunner implements ApplicationRunner {
                 writeFileSync(inputParameters.textOut, decryptedText);
             }
 
-            return new RunDetails(Status.Ok, `Text decrypted from image: ${decryptedText}`);
+            return new RunDetails(Status.Ok, `Text decrypted from image: ${decryptedText}`, decryptedText);
 
         } catch (error) {
             return new RunDetails(Status.Fail, error);
