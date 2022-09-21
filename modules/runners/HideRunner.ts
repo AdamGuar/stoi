@@ -72,16 +72,22 @@ class HideRunner implements ApplicationRunner {
             imgProcessor.addArrayToCanvas(byteArrayToHide, decryptedKey.pixelPostions);
 
             const encryptedImagePath = inputParameters.imageOutPath || './encrypted.png'
+            const encryptedImagePathPng = this.sanitizePathToPng(encryptedImagePath);
 
-            await imgProcessor.saveImage(encryptedImagePath);
-            return new RunDetails(Status.Ok, `Text encrypted and save to ${encryptedImagePath}`);
+            await imgProcessor.saveImage(encryptedImagePathPng);
+            return new RunDetails(Status.Ok, `Text encrypted and save to ${encryptedImagePathPng}`);
 
         } catch (error) {
             return new RunDetails(Status.Fail, error);
         }
-
-
     };
+
+    private sanitizePathToPng(path: string): string {
+        const splitted = path.split(".");
+        splitted[splitted.length - 1] = "png";
+
+        return splitted.join(".");
+    }
 }
 
 export { HideRunner }
